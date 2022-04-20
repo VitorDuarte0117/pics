@@ -3,9 +3,12 @@ import React from "react";
 class SearchBar extends React.Component {
     state = { term: "" };
 
-    onFormSubmit(e) {
-        e.preventDefault();
-    }
+    onFormSubmit = (event) => {
+        event.preventDefault();
+
+        this.props.onSubmit(this.state.term);
+    };
+
     render() {
         return (
             <div className="ui segment">
@@ -14,12 +17,10 @@ class SearchBar extends React.Component {
                         <label>Image Search</label>
                         <input
                             type="text"
-                            // Value will show whatever is his value,in this case,is ""
                             value={this.state.term}
-                            // Every time that the user type smh,the onChange will get what is being written
-                            onChange={(e) => {
-                                this.setState({ term: e.target.value });
-                            }}
+                            onChange={(e) =>
+                                this.setState({ term: e.target.value })
+                            }
                         />
                     </div>
                 </form>
@@ -27,4 +28,5 @@ class SearchBar extends React.Component {
         );
     }
 }
+
 export default SearchBar;
